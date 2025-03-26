@@ -5,7 +5,7 @@ class Rayvn < Formula
     homepage "https://github.com/phoggy/rayvn"
     version "0.1.0"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.0.tar.gz"
-    sha256 "de5d5380fc55a66781c474f2173cbca5ef5409f08a893b0775a615fdc766f7e7"
+    sha256 "beaf73d16fe46859b4bed3acec967e6d3b3634886567710b2b7edf2e1449e11b"
     license "GPL-3.0"
 
     # dependencies
