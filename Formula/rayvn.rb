@@ -10,12 +10,13 @@ class Rayvn < Formula
 
     # dependencies
 
-    # depends_on "jpeg"
+    depends_on "bash"
 
     def install
         system "chmod", "+x", "bin/rayvn"
         system "chmod", "+x", "bin/rayvn-pinentry"
-        system "bin/rayvn init"
+        system "{#bin}/bash --version"
+        system "{#bin}/bash bin/rayvn init"
     end
 
     test do
