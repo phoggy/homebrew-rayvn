@@ -15,8 +15,10 @@ class Rayvn < Formula
     def install
         system "chmod", "+x", "bin/rayvn"
         system "chmod", "+x", "bin/rayvn-pinentry"
-        system "{#bin}/bash --version"
-        system "{#bin}/bash bin/rayvn init"
+
+        bash_path = Formula["bash"].opt_bin/"bash"
+        system bash_path, "--version"
+        system bash_path, "-c", "export RAYVN_REQUIRE_TERMINAL=false; bin/rayvn init"
     end
 
     test do
