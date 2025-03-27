@@ -1,11 +1,11 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 class Rayvn < Formula
-    desc "A bash package manager"
+    desc "A simple bash package manager and library system, where scripts can use the 'require' function to load libraries."
     homepage "https://github.com/phoggy/rayvn"
-    version "0.1.0"
+    version "9.9.9"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.0.tar.gz"
-    sha256 "f2f3f8a35176c334f8031dcd326689378f82700afa1b533580a2ad786ddb58ef"
+    sha256 "9993f8a35176c334f8031dcd326689378f82700afa1b533580a2ad786ddb5999"
     license "GPL-3.0"
 
     # dependencies
