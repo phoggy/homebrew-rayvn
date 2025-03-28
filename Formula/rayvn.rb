@@ -3,9 +3,9 @@
 class Rayvn < Formula
     desc "A simple bash package manager and library system, where scripts can use the 'require' function to load libraries."
     homepage "https://github.com/phoggy/rayvn"
-    version "0.1.0"
+    version "0.1.1"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.0.tar.gz"
-    sha256 "f2f3f8a35176c334f8031dcd326689378f82700afa1b533580a2ad786ddb58ef"
+    sha256 "c91e0a1259abe638e0c8a0777569723e94a62d6d99b03a53dbbddb0276941586"
     license "GPL-3.0"
 
     # dependencies
@@ -40,7 +40,11 @@ class Rayvn < Formula
 
         # Run rayvn test
 
-        system bash, "-c", "rayvn test;"
+        #        system bash, "-c", "rayvn test;"
+
+        assert_match "PASSED", shell_output("script -q /dev/null #{bin}/rayvn --test")
+
+
         if $?.exitstatus != 0
             odie "test failed with exit code #{$?}"
             raise "rayvn test failed: aborting installation."
