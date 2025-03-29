@@ -1,7 +1,11 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 class Rayvn < Formula
-    desc "A simple bash shared library system, enabling use of \"require 'project/library'\" to load libraries."
+    desc "A bash shared library system. It enables shared library development, deployment and use via a 'require' function.
+          Shared libraries are developed as a 'project' in a GitHub repo along with a Homebrew formula, deployed using 'brew install'.
+          Shared libraries are referenced using a qualified project/library name e.g. 'rayvn/core'.
+          Shared libraries are used within a script or shared library via the 'require' function, e.g. require 'rayvn/core'"
+
     homepage "https://github.com/phoggy/rayvn"
     version "0.1.2"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.2.tar.gz"
