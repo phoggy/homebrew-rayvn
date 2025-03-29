@@ -3,9 +3,9 @@
 class Rayvn < Formula
     desc "A simple bash shared library system, enabling use of \"require 'project/library'\" to load libraries."
     homepage "https://github.com/phoggy/rayvn"
-    version "0.1.1"
+    version "0.1.2"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.0.tar.gz"
-    sha256 "c91e0a1259abe638e0c8a0777569723e94a62d6d99b03a53dbbddb0276941586"
+    sha256 "9ec40ae2d5b2c804ccbcc26b58f72c36f3c7fc44e994b74fab107ae95e615732"
     license "GPL-3.0"
 
     # dependencies
@@ -36,32 +36,17 @@ class Rayvn < Formula
         # Check version
 
         ohai "about to run rayvn --version"
-        result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn --version")
+        result=shell_output("rayvn --version")
+        # result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn --version")
         ohai "got result: #{result}"
         assert_match "rayvn #{version}", result
 
         # Run rayvn self test
 
         ohai "MOVING ON, trying rayvn test"
-        result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn test")
+        result=shell_output("rayvn test")
+        # result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn test")
         ohai "got result: #{result}"
         assert_match "updated ${HOME}.bashrc", result
-
-
-
-        rayvn_version = shell_output("rayvn --version").strip
-        assert_match "rayvn 0.1.0", rayvn_version
-
-        # Run rayvn test
-
-        #        system bash, "-c", "rayvn test;"
-
-        assert_match "PASSED", shell_output("script -q /dev/null #{bin}/rayvn --test")
-
-
-        if $?.exitstatus != 0
-            odie "test failed with exit code #{$?}"
-            raise "rayvn test failed: aborting installation."
-        end
     end
 end
