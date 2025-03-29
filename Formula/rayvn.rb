@@ -1,7 +1,7 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 class Rayvn < Formula
-    desc "A simple bash package manager and library system, where scripts can use the 'require' function to load libraries."
+    desc "A simple bash shared library system, enabling use of \"require 'project/library'\" to load libraries."
     homepage "https://github.com/phoggy/rayvn"
     version "0.1.1"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.0.tar.gz"
@@ -34,6 +34,20 @@ class Rayvn < Formula
         assert_predicate bin/"rayvn-pinentry", :executable?, "rayvn-pinentry binary should be executable"
 
         # Check version
+
+        ohai "about to run rayvn --version"
+        result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn --version")
+        ohai "got result: #{result}"
+        assert_match "rayvn #{version}", result
+
+        # Run rayvn self test
+
+        ohai "MOVING ON, trying rayvn test"
+        result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn test")
+        ohai "got result: #{result}"
+        assert_match "updated ${HOME}.bashrc", result
+
+
 
         rayvn_version = shell_output("rayvn --version").strip
         assert_match "rayvn 0.1.0", rayvn_version
