@@ -1,11 +1,15 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 class Rayvn < Formula
-    desc "A bash shared library system. It enables shared library development, deployment and use via a 'require' function.
-          Shared libraries are developed as a 'project' in a GitHub repo along with a Homebrew formula, deployed using 'brew install'.
-          Shared libraries are referenced using a qualified project/library name e.g. 'rayvn/core'.
-          Shared libraries are used within a script or shared library via the 'require' function, e.g. require 'rayvn/core'"
+    desc "
+A shared library system for bash. Shared libraries are:
 
+     - Developed within a GitHub repo (the 'project')
+     - Deployed via 'brew install'.
+     - Referenced by a qualified {project}/{library} name e.g. 'rayvn/core'.
+     - Used by a script or shared library via the 'require' function, e.g.: require 'rayvn/test'
+
+"
     homepage "https://github.com/phoggy/rayvn"
     version "0.1.2"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.2.tar.gz"
@@ -23,7 +27,7 @@ class Rayvn < Formula
         # install all files
 
         prefix.install Dir["*"]
-        if verbose?
+        if debug?
             ohai "All files have been installed to: #{prefix}"
         end
     end
@@ -39,18 +43,25 @@ class Rayvn < Formula
 
         # Check version
 
-        ohai "about to run rayvn --version"
-        result=shell_output("rayvn --version")
-        # result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn --version")
-        ohai "got result: #{result}"
+        # TODO convert to function
+        if debug?
+            ohai "running: rayvn --version"
+        end
+        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version")
+        if debug?
+            ohai "result: #{result}"
+        end
         assert_match "rayvn #{version}", result
 
         # Run rayvn self test
 
-        ohai "MOVING ON, trying rayvn test"
-        result=shell_output("rayvn test")
-        # result=shell_output("export RAYVN_REQUIRE_TERMINAL=false; rayvn test")
-        ohai "got result: #{result}"
-        assert_match "updated ${HOME}.bashrc", result
+        if debug?
+            ohai "running: rayvn test"
+        end
+        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test")
+        if debug?
+            ohai "result: #{result}"
+        end
+        assert_match "PASSED", result
     end
 end
