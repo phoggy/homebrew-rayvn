@@ -44,11 +44,11 @@ A shared library system for bash. Shared libraries are:
         # Check version
 
         # TODO convert to function
-        if debug?
+        if verbose?
             ohai "running: rayvn --version"
         end
         result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version", 0).strip
-        if debug?
+        if verbose?
             ohai "   got: #{result}"
             ohai "expect: rayvn v#{version}"
         end
@@ -56,14 +56,13 @@ A shared library system for bash. Shared libraries are:
 
         # Run rayvn self test
 
-        if debug?
+        if verbose?
             ohai "running: rayvn test"
         end
         result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test", 0).strip
-        if debug?
+        if verbose?
             ohai "   got: #{result}"
-            #            ohai "expect: PASSED"
+            ohai "expect: PASSED (but... output is not complete)"
         end
-        #assert_match "PASSED", result
     end
 end
