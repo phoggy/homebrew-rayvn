@@ -51,7 +51,7 @@ A shared library system for bash. Shared libraries are:
         if debug?
             ohai "result: #{result}"
         end
-        assert_match "rayvn #{version}", result
+        assert_match "rayvn v#{version}", result
 
         # Run rayvn self test
 
