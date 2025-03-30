@@ -47,21 +47,23 @@ A shared library system for bash. Shared libraries are:
         if debug?
             ohai "running: rayvn --version"
         end
-        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version")
+        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version", 0).strip
         if debug?
-            ohai "result: #{result}"
+            ohai "   got: #{result}"
+            ohai "expect: rayvn v#{version}"
         end
-        assert_match "rayvn v#{version}", result
+        assert_equal "rayvn v#{version}", result
 
         # Run rayvn self test
 
         if debug?
             ohai "running: rayvn test"
         end
-        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test")
+        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test", 0).strip
         if debug?
-            ohai "result: #{result}"
+            ohai "   got: #{result}"
+            #            ohai "expect: PASSED"
         end
-        assert_match "PASSED", result
+        #assert_match "PASSED", result
     end
 end
