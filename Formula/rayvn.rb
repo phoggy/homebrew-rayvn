@@ -6,8 +6,8 @@ A shared library system for bash. Shared libraries are:
 
      - Developed within a GitHub repo (the 'project')
      - Deployed via 'brew install'.
-     - Referenced by a qualified {project}/{library} name e.g. 'rayvn/core'.
-     - Used by a script or shared library via the 'require' function, e.g.: require 'rayvn/test'
+     - Referenced by a qualified {project}/{library} name e.g. 'my_project/my_lib1'.
+     - Used by a script or shared library via the 'require' function, e.g.: require 'rayvn/core'
 
 "
     homepage "https://github.com/phoggy/rayvn"
