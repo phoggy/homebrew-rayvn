@@ -43,26 +43,14 @@ A shared library system for bash. Shared libraries are:
 
         # Check version
 
-        # TODO convert to function
-        if verbose?
-            ohai "running: rayvn --version"
-        end
         result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version", 0).strip
-        if verbose?
-            ohai "   got: #{result}"
-            ohai "expect: rayvn v#{version}"
-        end
         assert_equal "rayvn v#{version}", result
 
         # Run rayvn self test
 
-        if verbose?
-            ohai "running: rayvn test"
-        end
         result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test", 0).strip
-        if verbose?
-            ohai "   got: #{result}"
-            ohai "expect: PASSED (but... output is not complete)"
-        end
+        assert_match /PASSED/, result
+
+        ohai "Tests passed."
     end
 end
