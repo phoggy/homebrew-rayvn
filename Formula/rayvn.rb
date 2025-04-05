@@ -13,7 +13,7 @@ A shared library system for bash. Shared libraries are:
     homepage "https://github.com/phoggy/rayvn"
     version "0.1.5"
     url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.5.tar.gz"
-    sha256 "bda6ef115dd8f52c0bd5b9594bf2f63bc739eff39bee8f9b219802b3f42909b2"
+    sha256 "3c25b7448dbacd39dd95628ce354fa418a6784e83d415c70a5815ae8ca2c4594"
     license "GPL-3.0"
 
     # dependencies
