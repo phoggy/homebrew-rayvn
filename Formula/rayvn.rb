@@ -11,9 +11,9 @@ A shared library system for bash. Shared libraries are:
 
 "
     homepage "https://github.com/phoggy/rayvn"
-    version "0.1.7"
-    url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.7.tar.gz"
-    sha256 "6ccc5962a4c6e1552857114cfd09f4d60eaab6b56602a4718632584658169e26"
+    version "0.1.8"
+    url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.8.tar.gz"
+    sha256 "b5fd5e5f9fd7454f6ca1a07ce446ff31ce06a1dfc9ade77a753f74c0478ab081"
     license "GPL-3.0"
 
     # dependencies
@@ -43,9 +43,9 @@ A shared library system for bash. Shared libraries are:
 
         # Check version
 
-        releaseDate "2025-04-06_14.15.00_PDT"
+        release_date="2025-04-06_14.28.23_PDT"
         result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version", 0).strip
-        assert_equal "rayvn v#{version} (released #{releaseDate})", result
+        assert_equal "rayvn v#{version} (released #{release_date})", result
 
         # Run rayvn self test
 
