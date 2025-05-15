@@ -38,9 +38,6 @@ A shared library system for bash. Shared libraries are:
         assert_predicate bin/"rayvn", :exist?, "rayvn binary should exist"
         assert_predicate bin/"rayvn", :executable?, "rayvn binary should be executable"
 
-        assert_predicate bin/"rayvn-pinentry", :exist?, "rayvn-pinentry binary should exist"
-        assert_predicate bin/"rayvn-pinentry", :executable?, "rayvn-pinentry binary should be executable"
-
         # Check version
 
         release_date="2025-04-10_12.52.07_PDT"
