@@ -32,6 +32,12 @@ A shared library system for bash. Shared libraries are:
         end
     end
 
+    # def post_install
+    #
+    #     # assert dependencies: rayvn dependencies
+    #
+    # end
+
     # test
 
     test do
@@ -51,4 +57,37 @@ A shared library system for bash. Shared libraries are:
 
         ohai "Tests passed."
     end
+
+    def caveats
+        <<~EOS
+    One or more tools installed or required by this formula may replace older versions
+    already present on your system (e.g. in /usr/bin). If a tool isn't behaving as expected,
+    your shell may be using a cached or lower-priority version from your PATH.
+
+    To ensure you're using the correct version(s):
+
+    🔁 Start a new terminal session
+        OR
+    🧹 Clear your shell's command cache:
+
+      - For Bash:
+          hash -r
+      - For Zsh:
+          rehash
+
+    ✅ Then verify with:
+
+        which <tool>
+        <tool> --version
+
+    💡 To inspect your PATH priority:
+
+        echo $PATH | tr ':' '\\n' | nl
+
+    Make sure Homebrew's bin directory appears **before** /usr/bin
+    (e.g. /opt/homebrew/bin on Apple Silicon, /usr/local/bin on Intel Macs).
+  EOS
+    end
+
+
 end
