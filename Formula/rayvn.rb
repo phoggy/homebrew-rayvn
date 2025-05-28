@@ -16,6 +16,7 @@ A shared library system for bash. Shared libraries are:
   # dependencies
 
   depends_on "bash"
+  depends_on "awk"
 
   # install
 
@@ -63,14 +64,17 @@ A shared library system for bash. Shared libraries are:
   # test
 
   test do
-    assert_path_exist bin / "rayvn", "rayvn binary should exist"
-    assert_predicate bin / "rayvn", :executable?, "rayvn binary should be executable"
+
+    # Check binary
+
+    assert_path_exists bin/"rayvn", "rayvn binary should exist"
+    assert_predicate bin/"rayvn", :executable?, "rayvn binary should be executable"
 
     # Check version
 
     release_date = "2025-04-10_12.52.07_PDT"
-    result = shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version").strip
-    assert_equal "rayvn v#{version} (released #{release_date})", result
+    expected_output = "rayvn v#{version} (released #{release_date})"
+    assert_equal expected_output, shell_output("export RAYVN_NO_TERMINAL=true; #{bin}/rayvn --version").strip
 
     # Run rayvn self test
 
