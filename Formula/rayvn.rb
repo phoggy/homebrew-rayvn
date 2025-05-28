@@ -9,8 +9,8 @@ A shared library system for bash. Shared libraries are:
 
 "
   homepage "https://github.com/phoggy/rayvn"
-  url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.2.tar.gz"
-  sha256 "693c3208c427fb776ac0490e2565db4ceb527a3923f7091a400ed2eefb1094d8"
+  url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.3.tar.gz"
+  sha256 "36b3e9db19105d883b479477aaf514ab6805c2550a84409fee50bbbac6e97536"
   license "GPL-3.0"
 
   # dependencies
