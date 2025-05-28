@@ -73,7 +73,7 @@ A shared library system for bash. Shared libraries are:
     # Check version
 
     release_date = "2025-04-10_12.52.07_PDT"
-    expected_output = "rayvn v#{version} (released #{release_date})"
+    expected_output = "rayvn #{version} (released #{release_date})"
     assert_equal expected_output, shell_output("export RAYVN_NO_TERMINAL=true; #{bin}/rayvn --version").strip
 
     # Run rayvn self test
