@@ -1,7 +1,5 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
 class Rayvn < Formula
-    desc "
+  desc "
 A shared library system for bash. Shared libraries are:
 
      - Developed within a GitHub repo (the 'project')
@@ -10,84 +8,74 @@ A shared library system for bash. Shared libraries are:
      - Used by a script or shared library via the 'require' function, e.g.: require 'rayvn/core'
 
 "
-    homepage "https://github.com/phoggy/rayvn"
-    version "0.1.2"
-    url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.2.tar.gz"
-    sha256 "693c3208c427fb776ac0490e2565db4ceb527a3923f7091a400ed2eefb1094d8"
-    license "GPL-3.0"
+  homepage "https://github.com/phoggy/rayvn"
+  url "https://github.com/phoggy/rayvn/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "693c3208c427fb776ac0490e2565db4ceb527a3923f7091a400ed2eefb1094d8"
+  license "GPL-3.0"
 
-    # dependencies
+  # dependencies
 
-    depends_on "bash"
+  depends_on "bash"
 
-    # install
+  # install
 
-    def install
+  def install
+    prefix.install Dir["*"]
+  end
 
-        # install all files
+  # def post_install
+  #
+  #   rayvn dependencies --assert
+  #
+  # end
 
-        prefix.install Dir["*"]
-        if debug?
-            ohai "All files have been installed to: #{prefix}"
-        end
-    end
+  def caveats
+    <<~EOS
+      One or more tools installed or required by this formula may replace older versions
+      already present on your system (e.g. in /usr/bin). If a tool isn't behaving as expected,
+      your shell may be using a cached or lower-priority version from your PATH.
 
-    # def post_install
-    #
-    #     # assert dependencies: rayvn dependencies
-    #
-    # end
+      To ensure you're using the correct version(s):
 
-    # test
+      🔁 Start a new terminal session
+          OR
+      🧹 Clear your shell's command cache:
 
-    test do
-        assert_predicate bin/"rayvn", :exist?, "rayvn binary should exist"
-        assert_predicate bin/"rayvn", :executable?, "rayvn binary should be executable"
+        - For Bash:
+            hash -r
+        - For Zsh:
+            rehash
 
-        # Check version
+      ✅ Then verify with:
 
-        release_date="2025-04-10_12.52.07_PDT"
-        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version", 0).strip
-        assert_equal "rayvn v#{version} (released #{release_date})", result
+          which <tool>
+          <tool> --version
 
-        # Run rayvn self test
+      💡 To inspect your PATH priority:
 
-        result=shell_output("export RAYVN_NO_TERMINAL=true; rayvn test", 0).strip
-        assert_match /PASSED/, result
+          echo $PATH | tr ':' '\\n' | nl
 
-        ohai "Tests passed."
-    end
+      Make sure Homebrew's bin directory appears **before** /usr/bin
+      (e.g. /opt/homebrew/bin on Apple Silicon, /usr/local/bin on Intel Macs).
+    EOS
+  end
 
-    def caveats
-        <<~EOS
-    One or more tools installed or required by this formula may replace older versions
-    already present on your system (e.g. in /usr/bin). If a tool isn't behaving as expected,
-    your shell may be using a cached or lower-priority version from your PATH.
+  # test
 
-    To ensure you're using the correct version(s):
+  test do
+    assert_path_exist bin / "rayvn", "rayvn binary should exist"
+    assert_predicate bin / "rayvn", :executable?, "rayvn binary should be executable"
 
-    🔁 Start a new terminal session
-        OR
-    🧹 Clear your shell's command cache:
+    # Check version
 
-      - For Bash:
-          hash -r
-      - For Zsh:
-          rehash
+    release_date = "2025-04-10_12.52.07_PDT"
+    result = shell_output("export RAYVN_NO_TERMINAL=true; rayvn --version").strip
+    assert_equal "rayvn v#{version} (released #{release_date})", result
 
-    ✅ Then verify with:
+    # Run rayvn self test
 
-        which <tool>
-        <tool> --version
-
-    💡 To inspect your PATH priority:
-
-        echo $PATH | tr ':' '\\n' | nl
-
-    Make sure Homebrew's bin directory appears **before** /usr/bin
-    (e.g. /opt/homebrew/bin on Apple Silicon, /usr/local/bin on Intel Macs).
-  EOS
-    end
-
-
+    result = shell_output("export RAYVN_NO_TERMINAL=true; rayvn test").strip
+    assert_match "PASSED", result
+    ohai "Tests passed."
+  end
 end
