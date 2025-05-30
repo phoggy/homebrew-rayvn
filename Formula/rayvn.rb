@@ -15,8 +15,9 @@ A shared library system for bash. Shared libraries are:
 
   # dependencies
 
-  depends_on "bash"
-  depends_on "awk"
+  depends_on "foo"
+  depends_on "bar"
+  depends_on "baz"
 
   # install
 
