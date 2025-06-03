@@ -24,11 +24,9 @@ A shared library system for bash. Shared libraries are:
     prefix.install Dir["*"]
   end
 
-  # def post_install
-  #
-  #   rayvn dependencies --assert
-  #
-  # end
+  def post_install
+    rayvn dependencies --assert
+  end
 
   def caveats
     <<~EOS
