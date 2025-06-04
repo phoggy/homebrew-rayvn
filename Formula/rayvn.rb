@@ -25,7 +25,7 @@ A shared library system for bash. Shared libraries are:
   end
 
   def post_install
-    rayvn dependencies --assert
+    system "#{bin}/rayvn dependencies --assert"
   end
 
   def caveats
@@ -72,11 +72,11 @@ A shared library system for bash. Shared libraries are:
 
     release_date = "2025-06-04 09:14:47 PDT"
     expected_output = "rayvn #{version} (released #{release_date})"
-    assert_equal expected_output, shell_output("export RAYVN_NO_TERMINAL=true; #{bin}/rayvn --version").strip
+    assert_equal expected_output, shell_output("#{bin}/rayvn --version").strip
 
     # Run rayvn self test
 
-    result = shell_output("export RAYVN_NO_TERMINAL=true; rayvn test").strip
+    result = shell_output("rayvn test").strip
     assert_match "PASSED", result
     ohai "Tests passed."
   end
