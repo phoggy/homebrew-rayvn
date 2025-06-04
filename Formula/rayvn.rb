@@ -77,7 +77,7 @@ A shared library system for bash. Shared libraries are:
     # Run rayvn self test
 
     result = shell_output("rayvn test").strip
-    assert_match "PASSED", result
+    assert_match "✔ log", result
     ohai "Tests passed."
   end
 end
