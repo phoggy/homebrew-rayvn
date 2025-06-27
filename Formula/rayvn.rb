@@ -26,6 +26,15 @@ A shared library system for bash. Shared libraries are:
 
   def post_install
     system "#{bin}/rayvn dependencies --assert"
+
+  # TODO: move to valt:
+  #   node_js_dir = "#{ENV["HOME"]}/.rayvn/valt/node-js"
+  #   unless Dir.exist?(node_js_dir)
+  #     FileUtils.mkdir_p(node_js_dir)
+  #     Dir.chdir(node_js_dir) do
+  #       system("npm", "init", "-y", out: File::NULL, err: File::NULL)
+  #     end
+  #   end
   end
 
   def caveats
