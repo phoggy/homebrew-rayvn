@@ -5,6 +5,8 @@ class Rayvn < Formula
   sha256 "52009c3d94d31023c67bf16f3696fa0474b717358ea9d072da1dceffbba8140c"
   license "GPL-3.0-only"
 
+  disable! date: "2026-11-08", because: "has moved to the rayvn-central/brew tap: brew tap rayvn-central/brew && brew install rayvn"
+
 
 
   def install
